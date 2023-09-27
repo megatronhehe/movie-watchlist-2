@@ -4,13 +4,19 @@ import NavbarMobile from "./components/NavbarMobile";
 import MainContainer from "./components/MainContainer";
 
 import Home from "./pages/Home/Home";
+import Search from "./pages/Search/Search";
+
+import { Routes, Route } from "react-router-dom";
 
 const App = () => {
 	return (
 		<>
 			<NavbarMobile />
 			<MainContainer>
-				<Home />
+				<Routes>
+					<Route path="/" element={<Home />} />
+					<Route path="/search" element={<Search />} />
+				</Routes>
 			</MainContainer>
 		</>
 	);

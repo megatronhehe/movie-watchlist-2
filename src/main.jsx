@@ -5,10 +5,14 @@ import "./index.css";
 
 import { BrowserRouter } from "react-router-dom";
 
+import PopularMoviesContextProvider from "./context/PopularMoviesContextProvider.jsx";
+
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<BrowserRouter>
-		<React.StrictMode>
-			<App />
-		</React.StrictMode>
+		<PopularMoviesContextProvider>
+			<React.StrictMode>
+				<App />
+			</React.StrictMode>
+		</PopularMoviesContextProvider>
 	</BrowserRouter>
 );
