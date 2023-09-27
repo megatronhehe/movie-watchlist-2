@@ -1,19 +1,13 @@
 import React, { useState, useEffect } from "react";
 
+import { options } from "../utils/options";
+
 import PopularMoviesContext from "./PopularMoviesContext";
 
 const PopularMoviesContextProvider = ({ children }) => {
 	const [popularMovies, setPopularMovies] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [isError, setIsError] = useState(false);
-
-	const options = {
-		method: "GET",
-		headers: {
-			accept: "application/json",
-			Authorization: import.meta.env.VITE_AUTHTOKEN,
-		},
-	};
 
 	const fetchPopularMovies = () => {
 		setIsLoading(true);

@@ -3,13 +3,13 @@ import React, { useContext } from "react";
 import LoadingCard from "../../components/LoadingCard";
 import MovieCard from "../../components/MovieCard";
 
-import PopularMoviesContext from "../../context/PopularMoviesContext";
+import SearchMoviesContext from "../../context/SearchMoviesContext";
 
-const PopularMoviesList = () => {
-	const { fetchPopularMovies, popularMovies, isLoading, isError } =
-		useContext(PopularMoviesContext);
+const SearchedMoviesList = () => {
+	const { fetchPopularMovies, searchedMovies, isLoading, isError } =
+		useContext(SearchMoviesContext);
 
-	const popularMoviesElement = popularMovies.map((movie) => (
+	const searchedMoviesElement = searchedMovies.map((movie) => (
 		<MovieCard key={movie.id} movie={movie} />
 	));
 
@@ -43,9 +43,9 @@ const PopularMoviesList = () => {
 
 	return (
 		<ul className="grid grid-cols-2 gap-4 mt-4 sm:grid sm:grid-cols-4">
-			{popularMoviesElement}
+			{searchedMoviesElement}
 		</ul>
 	);
 };
 
-export default PopularMoviesList;
+export default SearchedMoviesList;

@@ -6,13 +6,16 @@ import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 
 import PopularMoviesContextProvider from "./context/PopularMoviesContextProvider.jsx";
+import SearchMoviesContextProvider from "./context/SearchMoviesContextProvider.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<BrowserRouter>
-		<PopularMoviesContextProvider>
-			<React.StrictMode>
-				<App />
-			</React.StrictMode>
-		</PopularMoviesContextProvider>
+		<SearchMoviesContextProvider>
+			<PopularMoviesContextProvider>
+				<React.StrictMode>
+					<App />
+				</React.StrictMode>
+			</PopularMoviesContextProvider>
+		</SearchMoviesContextProvider>
 	</BrowserRouter>
 );

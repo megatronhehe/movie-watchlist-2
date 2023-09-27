@@ -1,0 +1,20 @@
+import React, { useEffect, useState } from "react";
+
+export const useDebounce = (value, delay) => {
+	// State to keep track of the debounced value
+	const [debouncedValue, setDebouncedValue] = useState(value);
+
+	useEffect(() => {
+		// Set a timeout to update debouncedValue after the specified delay
+		const debounceTimeout = setTimeout(() => {
+			setDebouncedValue(value);
+		}, delay);
+
+		// Clear the timeout if the value changes (i.e., the user types again before the delay)
+		return () => {
+			clearTimeout(debounceTimeout);
+		};
+	}, [value, delay]);
+
+	return debouncedValue;
+};
