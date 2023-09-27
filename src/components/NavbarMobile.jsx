@@ -17,7 +17,7 @@ const NavbarMobile = () => {
 				<NavLink to="/search" className="flex justify-center w-1/3">
 					<IoSearchOutline />
 				</NavLink>
-				<NavLink to="/" className="flex justify-center w-1/3">
+				<NavLink to="/watchlist" className="flex justify-center w-1/3">
 					<IoGridOutline />
 				</NavLink>
 			</ul>

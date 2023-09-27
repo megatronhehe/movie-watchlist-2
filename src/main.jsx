@@ -7,15 +7,18 @@ import { BrowserRouter } from "react-router-dom";
 
 import PopularMoviesContextProvider from "./context/PopularMoviesContextProvider.jsx";
 import SearchMoviesContextProvider from "./context/SearchMoviesContextProvider.jsx";
+import WatchlistContextProvider from "./context/WatchlistContextProvider.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<BrowserRouter>
-		<SearchMoviesContextProvider>
-			<PopularMoviesContextProvider>
-				<React.StrictMode>
-					<App />
-				</React.StrictMode>
-			</PopularMoviesContextProvider>
-		</SearchMoviesContextProvider>
+		<WatchlistContextProvider>
+			<SearchMoviesContextProvider>
+				<PopularMoviesContextProvider>
+					<React.StrictMode>
+						<App />
+					</React.StrictMode>
+				</PopularMoviesContextProvider>
+			</SearchMoviesContextProvider>
+		</WatchlistContextProvider>
 	</BrowserRouter>
 );
