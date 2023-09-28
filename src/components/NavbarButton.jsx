@@ -10,12 +10,12 @@ const NavbarButton = ({ url, icon, name }) => {
 			to={url}
 			onMouseEnter={() => setIsShow(true)}
 			onMouseLeave={() => setIsShow(false)}
-			className="relative flex justify-center w-1/3 px-2 py-4 duration-200 hover:scale-125"
+			className="relative flex justify-center w-1/3 p-4 duration-200 hover:scale-110"
 		>
 			{icon}
 
 			{isShow && (
-				<div className="absolute px-3 py-1 text-sm rounded-xl -bottom-6 bg-gray-950">
+				<div className="absolute px-2 py-1 text-sm rounded-xl -bottom-6 bg-gray-950">
 					{name}
 				</div>
 			)}

@@ -4,10 +4,13 @@ import { useDebounce } from "../hooks/useDebounce";
 
 import { options } from "../utils/options";
 
+import { parseISO, compareAsc, compareDesc } from "date-fns";
+
 import SearchMoviesContext from "./SearchMoviesContext";
 
 const SearchMoviesContextProvider = ({ children }) => {
 	const [searchedMovies, setSearchedMovies] = useState([]);
+	const [isDateSortedAsc, setIsDateSortedAsc] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 	const [isError, setIsError] = useState(false);
 	const [searchInput, setSearchInput] = useState("");
@@ -19,6 +22,7 @@ const SearchMoviesContextProvider = ({ children }) => {
 	};
 
 	const fetchSearchedMovies = () => {
+		setSearchedMovies([]);
 		setIsLoading(true);
 		setIsError(false);
 		fetch(
@@ -45,15 +49,34 @@ const SearchMoviesContextProvider = ({ children }) => {
 		}
 	}, [debouncedSearchInput]);
 
+	const sortObjectsByDate = (objectArray) => {
+		objectArray.sort((a, b) => {
+			const dateA = parseISO(a.release_date);
+			const dateB = parseISO(b.release_date);
+			if (isDateSortedAsc) {
+				return compareAsc(dateA, dateB);
+			}
+			return compareDesc(dateA, dateB);
+		});
+
+		return objectArray;
+	};
+
+	const sortedSearchedMovies = sortObjectsByDate(searchedMovies);
+
 	return (
 		<SearchMoviesContext.Provider
 			value={{
+				fetchSearchedMovies,
+				sortedSearchedMovies,
 				searchedMovies,
 				searchInput,
 				setSearchInput,
 				handleSearch,
 				isLoading,
 				isError,
+				isDateSortedAsc,
+				setIsDateSortedAsc,
 			}}
 		>
 			{children}
