@@ -5,6 +5,7 @@ import WatchlistContext from "../../context/WatchlistContext";
 import WatchlistMovieCard from "./WatchlistMovieCard";
 
 import { RiClapperboardFill } from "react-icons/ri";
+import Stats from "./Stats";
 
 const Search = () => {
 	const { watchlist } = useContext(WatchlistContext);
@@ -16,13 +17,15 @@ const Search = () => {
 	return (
 		<div className="flex flex-col gap-4 p-4 text-sm ">
 			<section>
-				<div className="flex items-center justify-between sm:py-10">
+				<div className="flex items-center justify-between sm:pt-10">
 					<h2 className="flex flex-col items-center justify-center w-full gap-2 pl-4 text-xl border-red-400">
 						<RiClapperboardFill className="text-4xl" />
 						Watchlist Movies
 					</h2>
 				</div>
 			</section>
+
+			<Stats />
 
 			<section>
 				<ul className="grid grid-cols-2 gap-4 sm:grid sm:grid-cols-4">
