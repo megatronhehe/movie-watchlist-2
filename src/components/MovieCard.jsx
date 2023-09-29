@@ -57,7 +57,7 @@ const MovieCard = ({ movie }) => {
 
 				<div className="absolute flex items-center gap-1 px-2 py-1 text-xs font-semibold text-gray-400 bg-black top-2 right-2 rounded-xl">
 					<IoStar className="text-yellow-300" />
-					{movie.vote_average}
+					{movie.vote_average.toFixed(1)}
 				</div>
 			</li>
 			{toggleMovieInfoModal && (

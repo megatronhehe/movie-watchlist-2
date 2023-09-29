@@ -68,15 +68,18 @@ const MovieInfo = ({ movie }) => {
 				</p>
 			</div>
 
-			<ul className="flex gap-2 text-xs">
+			<ul className="flex gap-2 pb-2 overflow-auto text-xs">
 				{thisMovie.genres.map((genre) => (
-					<li key={genre.id} className="px-2 py-1 bg-gray-800 rounded-xl">
+					<li
+						key={genre.id}
+						className="flex-shrink-0 px-2 py-1 bg-gray-800 rounded-xl"
+					>
 						{genre.name}
 					</li>
 				))}
 			</ul>
 
-			<ul className="flex gap-2">
+			<ul className="flex gap-2 -mt-2">
 				{isDateExist ? (
 					<li className="flex flex-col items-center justify-between w-1/3 h-24 gap-1 p-2 text-xs bg-gray-900 rounded-xl">
 						<span>{format(new Date(thisMovie.release_date), "MMMM")}</span>
@@ -106,7 +109,7 @@ const MovieInfo = ({ movie }) => {
 						<IoStar className="text-lg text-yellow-400" />
 					</span>
 					<span className="text-xl font-semibold">
-						{thisMovie.vote_average}
+						{thisMovie.vote_average.toFixed(1)}
 					</span>
 					<span>ratings</span>
 				</li>
