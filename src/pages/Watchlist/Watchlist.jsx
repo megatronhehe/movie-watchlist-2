@@ -2,16 +2,15 @@ import React, { useContext } from "react";
 
 import WatchlistContext from "../../context/WatchlistContext";
 
-import { IoSearchOutline } from "react-icons/io5";
-import { RiClapperboardFill } from "react-icons/ri";
+import WatchlistMovieCard from "./WatchlistMovieCard";
 
-import MovieCard from "../../components/MovieCard";
+import { RiClapperboardFill } from "react-icons/ri";
 
 const Search = () => {
 	const { watchlist } = useContext(WatchlistContext);
 
 	const watchlistElement = watchlist.map((movie) => (
-		<MovieCard key={movie.id} movie={movie} />
+		<WatchlistMovieCard key={movie.id} movie={movie} />
 	));
 
 	return (

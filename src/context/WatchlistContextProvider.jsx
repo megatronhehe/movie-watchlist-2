@@ -11,7 +11,7 @@ const WatchlistContextProvider = ({ children }) => {
 		);
 		setWatchlist((prev) =>
 			!isMovieAlreadyExist
-				? [...prev, newMovie]
+				? [...prev, { ...newMovie, isWatched: false }]
 				: prev.filter((movie) => movie.id !== newMovie.id)
 		);
 	};
