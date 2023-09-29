@@ -9,11 +9,11 @@ const Stats = () => {
 
 	const moviesCount = watchlist.length;
 
-	const watchedMovies = watchlist.filter(
+	const watchedMoviesCount = watchlist.filter(
 		(movie) => movie.isWatched === true
 	).length;
 
-	const unwatchedMovies = watchlist.filter(
+	const unwatchedMoviesCount = watchlist.filter(
 		(movie) => movie.isWatched === false
 	).length;
 
@@ -25,8 +25,10 @@ const Stats = () => {
 	};
 
 	const progressPercentage = parseFloat(
-		calculatePercentage(watchedMovies, moviesCount)
+		calculatePercentage(watchedMoviesCount, moviesCount)
 	);
+
+	const isAllWatched = progressPercentage === 100;
 
 	return (
 		<section className="flex justify-center">
@@ -38,7 +40,7 @@ const Stats = () => {
 					</div>
 					<h2>Watched count</h2>
 					<h3 className="text-xl font-normal">
-						{watchedMovies}
+						{watchedMoviesCount}
 						<span className="text-sm font-extralight">/{moviesCount}</span>
 					</h3>
 				</li>
@@ -50,7 +52,7 @@ const Stats = () => {
 					</div>
 					<h2 className="text-center">Not watched count</h2>
 					<h3 className="text-xl font-normal">
-						{unwatchedMovies}
+						{unwatchedMoviesCount}
 						<span className="text-sm font-extralight">/{moviesCount}</span>
 					</h3>
 				</li>
@@ -62,7 +64,12 @@ const Stats = () => {
 					</div>
 					<div
 						style={{ height: `${progressPercentage}%` }}
-						className="absolute bottom-0 left-0 w-full h-full duration-1000 bg-green-400 animate-pulse"
+						className={`absolute bottom-0 left-0 w-full h-full duration-1000 ${
+							isAllWatched
+								? "bg-green-400 animate-none"
+								: "bg-blue-400 animate-pulse"
+						}
+                        `}
 					></div>
 				</li>
 			</ul>
