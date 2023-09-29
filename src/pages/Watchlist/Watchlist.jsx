@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 
 import WatchlistContext from "../../context/WatchlistContext";
 
+import { Link } from "react-router-dom";
+
 import WatchlistMovieCard from "./WatchlistMovieCard";
 
 import { RiClapperboardFill } from "react-icons/ri";
@@ -13,6 +15,8 @@ const Search = () => {
 	const watchlistElement = watchlist.map((movie) => (
 		<WatchlistMovieCard key={movie.id} movie={movie} />
 	));
+
+	const isMoviesExist = watchlist.length > 0;
 
 	return (
 		<div className="flex flex-col gap-4 p-4 text-sm ">
@@ -28,9 +32,22 @@ const Search = () => {
 			<Stats />
 
 			<section>
-				<ul className="grid grid-cols-2 gap-4 sm:grid sm:grid-cols-4">
-					{watchlistElement}
-				</ul>
+				{isMoviesExist ? (
+					<ul className="grid grid-cols-2 gap-4 sm:grid sm:grid-cols-4">
+						{watchlistElement}
+					</ul>
+				) : (
+					<div className="flex flex-col items-center justify-center gap-2 pt-20 text-gray-400">
+						<span>No movies in your watchlist yet...</span>
+						<span>search and add movies to your watchlist now!</span>
+						<Link
+							to="/search"
+							className="px-3 py-1 mt-4 text-white bg-blue-400 rounded-xl"
+						>
+							Search now!
+						</Link>
+					</div>
+				)}
 			</section>
 		</div>
 	);

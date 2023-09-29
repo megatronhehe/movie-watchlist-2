@@ -56,15 +56,13 @@ const Stats = () => {
 				</li>
 
 				<li className="relative flex flex-col items-center justify-around w-1/3 h-32 overflow-hidden bg-gray-800 rounded-xl">
-					<div className="absolute z-10 flex flex-col gap-2">
+					<div className="absolute z-10 flex flex-col w-5/6 gap-2 p-4 text-center bg-black rounded-lg backdrop-filter backdrop-blur-sm bg-opacity-10 h-5/6">
 						<h2>Progress</h2>
-						<h3 className="text-2xl font-normal text-center">
-							{progressPercentage}%
-						</h3>
+						<h3 className="text-2xl font-normal ">{progressPercentage}%</h3>
 					</div>
 					<div
 						style={{ height: `${progressPercentage}%` }}
-						className="absolute bottom-0 left-0 w-full h-full duration-200 bg-green-400"
+						className="absolute bottom-0 left-0 w-full h-full duration-1000 bg-green-400 animate-pulse"
 					></div>
 				</li>
 			</ul>
