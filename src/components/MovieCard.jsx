@@ -5,7 +5,7 @@ import { BsBookmark, BsFillBookmarkCheckFill } from "react-icons/bs";
 
 import { getYear } from "date-fns";
 
-import MovieInfoModal from "./MovieInfoModal";
+import MovieInfoModal from "./MovieInfoModal/MovieInfoModal";
 
 import WatchlistContext from "../context/WatchlistContext";
 

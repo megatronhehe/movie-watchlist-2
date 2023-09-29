@@ -59,10 +59,10 @@ const SearchedMoviesList = () => {
 	) {
 		return (
 			<p className="flex flex-col items-center gap-4 mt-24 text-lg text-blue-300">
-				<div className="flex items-end">
+				<span className="flex items-end">
 					<RiClapperboardFill className=" text-7xl" />
 					<IoSearch className="text-4xl " />
-				</div>
+				</span>
 				<span className="w-48 text-center">
 					start by searching a movie by its title
 				</span>
@@ -74,10 +74,10 @@ const SearchedMoviesList = () => {
 	if (isNotFound) {
 		return (
 			<p className="flex flex-col items-center gap-4 mt-24 text-lg text-red-300">
-				<div className="flex items-end">
+				<span className="flex items-end">
 					<IoClose className=" text-7xl" />
 					<IoSearch className="text-4xl " />
-				</div>
+				</span>
 				<span className="w-48 text-center">
 					No movies by "<span className="font-semibold">{searchInput}</span>"
 					was found..
