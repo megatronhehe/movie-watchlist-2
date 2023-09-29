@@ -2,6 +2,9 @@ import React, { useContext } from "react";
 
 import WatchlistContext from "../../context/WatchlistContext";
 
+import { IoSearchOutline } from "react-icons/io5";
+import { RiClapperboardFill } from "react-icons/ri";
+
 import MovieCard from "../../components/MovieCard";
 
 const Search = () => {
@@ -16,7 +19,8 @@ const Search = () => {
 			<section>
 				<div className="flex items-center justify-between">
 					<h2 className="flex flex-col items-center justify-center w-full gap-2 pl-4 text-xl border-red-400">
-						My Watchlist
+						<RiClapperboardFill className="text-4xl" />
+						Watchlist Movies
 					</h2>
 				</div>
 			</section>

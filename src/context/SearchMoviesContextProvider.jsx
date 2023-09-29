@@ -56,6 +56,10 @@ const SearchMoviesContextProvider = ({ children }) => {
 		}
 	}, [debouncedSearchInput]);
 
+	useEffect(() => {
+		setIsNotFound(false);
+	}, [searchInput]);
+
 	const sortObjectsByDate = (objectArray) => {
 		objectArray.sort((a, b) => {
 			const dateA = parseISO(a.release_date);
