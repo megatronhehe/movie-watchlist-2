@@ -40,6 +40,8 @@ const MovieInfo = ({ movie }) => {
 		(watchlistMovie) => watchlistMovie.id === movie.id
 	);
 
+	const isDateExist = movie.release_date.length > 0;
+
 	if (isLoading) {
 		return (
 			<p className="flex justify-center text-4xl ">
@@ -59,8 +61,10 @@ const MovieInfo = ({ movie }) => {
 					{thisMovie.title}
 				</h1>
 				<p className="text-xs">
-					{format(new Date(thisMovie.release_date), "yyyy")} -{" "}
-					<span>{thisMovie.status}</span>
+					{isDateExist
+						? format(new Date(thisMovie.release_date), "yyyy")
+						: "date unknown"}{" "}
+					- <span>{thisMovie.status}</span>
 				</p>
 			</div>
 
@@ -73,13 +77,21 @@ const MovieInfo = ({ movie }) => {
 			</ul>
 
 			<ul className="flex gap-2">
-				<li className="flex flex-col items-center justify-between w-1/3 h-24 gap-1 p-2 text-xs bg-gray-900 rounded-xl">
-					<span>{format(new Date(thisMovie.release_date), "MMMM")}</span>
-					<span className="text-xl font-semibold">
-						{format(new Date(thisMovie.release_date), "dd")}
-					</span>
-					<span>{format(new Date(thisMovie.release_date), "yyyy")}</span>
-				</li>
+				{isDateExist ? (
+					<li className="flex flex-col items-center justify-between w-1/3 h-24 gap-1 p-2 text-xs bg-gray-900 rounded-xl">
+						<span>{format(new Date(thisMovie.release_date), "MMMM")}</span>
+						<span className="text-xl font-semibold">
+							{format(new Date(thisMovie.release_date), "dd")}
+						</span>
+						<span>{format(new Date(thisMovie.release_date), "yyyy")}</span>
+					</li>
+				) : (
+					<li className="flex flex-col items-center justify-between w-1/3 h-24 gap-1 p-2 text-xs bg-gray-900 rounded-xl">
+						<span className="text-2xl">?</span>
+						<span>date</span>
+						<span>unknown</span>
+					</li>
+				)}
 
 				<li className="flex flex-col items-center justify-between w-1/3 h-24 gap-1 p-2 text-xs bg-gray-900 rounded-xl">
 					<span>
