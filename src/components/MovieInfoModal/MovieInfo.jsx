@@ -54,8 +54,10 @@ const MovieInfo = ({ movie }) => {
 
 	return (
 		<div className="relative flex flex-col gap-6 font-extralight">
-			<div className="flex flex-col items-center pb-2 border-b border-gray-700">
-				<h1 className="text-xl font-normal">{thisMovie.title}</h1>
+			<div className="flex flex-col items-center gap-2 pb-2 border-b border-gray-700">
+				<h1 className="w-2/3 text-xl font-normal text-center">
+					{thisMovie.title}
+				</h1>
 				<p className="text-xs">
 					{format(new Date(thisMovie.release_date), "yyyy")} -{" "}
 					<span>{thisMovie.status}</span>
