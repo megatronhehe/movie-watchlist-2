@@ -13,6 +13,7 @@ const SearchMoviesContextProvider = ({ children }) => {
 	const [isDateSortedAsc, setIsDateSortedAsc] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 	const [isError, setIsError] = useState(false);
+	const [isNotFound, setIsNotFound] = useState(false);
 	const [searchInput, setSearchInput] = useState("");
 
 	const debouncedSearchInput = useDebounce(searchInput, 500);
@@ -25,6 +26,7 @@ const SearchMoviesContextProvider = ({ children }) => {
 		setSearchedMovies([]);
 		setIsLoading(true);
 		setIsError(false);
+		setIsNotFound(false);
 		fetch(
 			`https://api.themoviedb.org/3/search/movie?query=${debouncedSearchInput}&include_adult=false&language=en-US&page=1`,
 			options
@@ -36,7 +38,12 @@ const SearchMoviesContextProvider = ({ children }) => {
 					return response.json();
 				}
 			})
-			.then((data) => setSearchedMovies(data.results))
+			.then((data) => {
+				setSearchedMovies(data.results);
+				if (data.results.length < 1) {
+					setIsNotFound(true);
+				}
+			})
 			.catch((err) => setIsError(true))
 			.finally(() => {
 				setIsLoading(false);
@@ -75,6 +82,7 @@ const SearchMoviesContextProvider = ({ children }) => {
 				handleSearch,
 				isLoading,
 				isError,
+				isNotFound,
 				isDateSortedAsc,
 				setIsDateSortedAsc,
 			}}

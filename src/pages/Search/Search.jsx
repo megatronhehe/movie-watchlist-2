@@ -3,7 +3,6 @@ import React, { useContext } from "react";
 import {
 	IoSearchOutline,
 	IoCloseCircle,
-	IoCaretBack,
 	IoCaretForward,
 } from "react-icons/io5";
 
@@ -30,7 +29,7 @@ const Search = () => {
 					</h2>
 				</div>
 
-				<div className="flex justify-center gap-4 mt-4">
+				<div className="flex justify-center gap-2 mt-4">
 					<form
 						onSubmit={(e) => e.preventDefault()}
 						className="flex justify-center"
