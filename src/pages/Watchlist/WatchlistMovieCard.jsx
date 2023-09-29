@@ -1,6 +1,11 @@
 import React, { useContext, useState } from "react";
 
-import { IoStar, IoInformationCircleOutline } from "react-icons/io5";
+import {
+	IoStar,
+	IoInformationCircleOutline,
+	IoEllipseOutline,
+	IoCheckmarkCircleSharp,
+} from "react-icons/io5";
 import { BsBookmark, BsFillBookmarkCheckFill } from "react-icons/bs";
 
 import { getYear } from "date-fns";
@@ -72,9 +77,21 @@ const WatchlistMovieCard = ({ movie }) => {
 
 				<button
 					onClick={() => markAsWatched(movie.id)}
-					className="absolute z-30 px-2 py-1 text-white bg-black rounded-xl bottom-2 left-2"
+					className={`absolute z-10  pl-1 pr-3 py-1 flex items-center text-white bg-black rounded-full justify-between duration-200 bottom-2 left-2 gap-2 backdrop-filter backdrop-blur-sm  bg-opacity-70 text-xs
+                    ${movie.isWatched ? "bg-green-400 " : "bg-black "}
+                    `}
 				>
-					{movie.isWatched ? "watched" : "not watched"}
+					{movie.isWatched ? (
+						<>
+							<IoCheckmarkCircleSharp className="text-xl" />
+							watched
+						</>
+					) : (
+						<>
+							<IoEllipseOutline className="text-xl" />
+							not watched
+						</>
+					)}
 				</button>
 			</li>
 			{toggleMovieInfoModal && (
