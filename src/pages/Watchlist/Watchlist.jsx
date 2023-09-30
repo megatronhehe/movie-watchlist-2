@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import WatchlistMovieCard from "./WatchlistMovieCard";
 import Stats from "./Stats";
 import { RiClapperboardFill } from "react-icons/ri";
-import { IoEye } from "react-icons/io5";
+import { IoEye, IoCloseCircle } from "react-icons/io5";
 
 const Search = () => {
 	const { watchlist } = useContext(WatchlistContext);
@@ -16,18 +16,23 @@ const Search = () => {
 	};
 
 	const [filter, setFilter] = useState(FILTER_OPTIONS.ALL);
+	const [searchQuery, setSearchQuery] = useState("");
 
 	const isMoviesExist = watchlist.length > 0;
 
 	const filterWatchlist = () => {
-		switch (filter) {
-			case FILTER_OPTIONS.WATCHED:
-				return watchlist.filter((movie) => movie.isWatched);
-			case FILTER_OPTIONS.NOT_WATCHED:
-				return watchlist.filter((movie) => !movie.isWatched);
-			default:
-				return watchlist;
-		}
+		return watchlist.filter((movie) => {
+			const matchesFilter =
+				filter === FILTER_OPTIONS.ALL ||
+				(filter === FILTER_OPTIONS.WATCHED && movie.isWatched) ||
+				(filter === FILTER_OPTIONS.NOT_WATCHED && !movie.isWatched);
+
+			const matchesSearch = movie.title
+				.toLowerCase()
+				.includes(searchQuery.toLowerCase());
+
+			return matchesFilter && matchesSearch;
+		});
 	};
 
 	const filteredWatchlist = filterWatchlist();
@@ -49,22 +54,45 @@ const Search = () => {
 
 			<Stats />
 
-			<section className="flex items-center gap-2 text-sm">
-				<IoEye className="text-xl" />
-				<ul className="flex gap-1 pl-2 border-l">
-					{Object.values(FILTER_OPTIONS).map((option) => (
-						<li
-							key={option}
-							onClick={() => setFilter(option)}
-							className={`px-3 py-1 rounded-xl duration-200 cursor-pointer ${
-								filter === option ? "bg-blue-400" : "bg-gray-800"
-							}`}
-						>
-							{option}
-						</li>
-					))}
-				</ul>
-			</section>
+			<div className="flex flex-col gap-4 sm:gap-0 sm:flex-row sm:justify-between sm:items-center">
+				<section className="flex items-center justify-center gap-2 text-sm sm:justify-start">
+					<IoEye className="text-xl text-blue-300" />
+					<ul className="flex gap-1 pl-2 border-l border-gray-600">
+						{Object.values(FILTER_OPTIONS).map((option) => (
+							<li
+								key={option}
+								onClick={() => setFilter(option)}
+								className={`px-3 py-1 rounded-xl duration-200 cursor-pointer hover:bg-blue-400 ${
+									filter === option ? "bg-blue-500" : "bg-gray-800"
+								}`}
+							>
+								{option}
+							</li>
+						))}
+					</ul>
+				</section>
+
+				<section className="flex items-center justify-center gap-2 text-sm sm:justify-start">
+					<form
+						onSubmit={(e) => e.preventDefault()}
+						className="flex justify-center"
+					>
+						<div className="relative flex items-center w-56">
+							<input
+								name="search"
+								placeholder="search by title"
+								className="w-full px-4 py-2 text-center duration-200 bg-gray-900 border border-gray-700 outline-none rounded-xl focus:border-blue-300"
+								value={searchQuery}
+								onChange={(e) => setSearchQuery(e.target.value)}
+							/>
+							<IoCloseCircle
+								className="absolute text-xl text-gray-700 duration-200 cursor-pointer hover:text-red-300 right-2"
+								onClick={() => setSearchQuery("")}
+							/>
+						</div>
+					</form>
+				</section>
+			</div>
 
 			<section>
 				{isMoviesExist ? (
