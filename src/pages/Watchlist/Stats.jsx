@@ -32,29 +32,29 @@ const Stats = () => {
 
 	return (
 		<section className="flex justify-center">
-			<ul className="flex w-full gap-2 sm:w-3/5">
-				<li className="flex flex-col items-center justify-between w-1/3 h-32 p-2 bg-gray-800 rounded-xl">
+			<ul className="flex w-full gap-4 sm:w-3/5">
+				<li className="flex flex-col items-center justify-between w-1/3 h-32 p-4 bg-gray-800 rounded-xl">
 					<div className="flex text-3xl text-green-300 ">
 						<IoEyeOutline />
 						<IoCheckmark className="text-xl" />
 					</div>
-					<h2>Watched count</h2>
 					<h3 className="text-xl font-normal">
 						{watchedMoviesCount}
 						<span className="text-sm font-extralight">/{moviesCount}</span>
 					</h3>
+					<h2>Watched count</h2>
 				</li>
 
-				<li className="flex flex-col items-center justify-between w-1/3 h-32 p-2 bg-gray-800 rounded-xl">
+				<li className="flex flex-col items-center justify-between w-1/3 h-32 p-4 bg-gray-800 rounded-xl">
 					<div className="flex text-3xl text-red-400 ">
 						<IoEyeOutline />
 						<IoClose className="text-xl" />
 					</div>
-					<h2 className="text-center">Not watched count</h2>
-					<h3 className="text-xl font-normal">
+					<h2 className="text-xl font-normal">
 						{unwatchedMoviesCount}
 						<span className="text-sm font-extralight">/{moviesCount}</span>
-					</h3>
+					</h2>
+					<h3 className="text-center">Not watched count</h3>
 				</li>
 
 				<li className="relative flex flex-col items-center justify-around w-1/3 h-32 overflow-hidden bg-gray-800 rounded-xl">
