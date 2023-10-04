@@ -1,6 +1,13 @@
 import React from "react";
 
-import { IoHomeOutline, IoSearchOutline, IoGridOutline } from "react-icons/io5";
+import {
+	IoHomeOutline,
+	IoHome,
+	IoSearchOutline,
+	IoSearch,
+	IoGridOutline,
+	IoGrid,
+} from "react-icons/io5";
 
 import NavbarButton from "./NavbarButton";
 import { NavLink } from "react-router-dom";
@@ -14,17 +21,24 @@ const NavbarMobile = () => {
 				</NavLink>
 
 				<ul className="flex justify-between w-full gap-8 px-4 sm:w-auto ">
-					<NavbarButton url="/" icon={<IoHomeOutline />} name="Home" />
+					<NavbarButton
+						url="/"
+						icon={<IoHomeOutline />}
+						activeIcon={<IoHome />}
+						name="Home"
+					/>
 
 					<NavbarButton
 						url="/search"
 						icon={<IoSearchOutline />}
+						activeIcon={<IoSearch />}
 						name="Search"
 					/>
 
 					<NavbarButton
 						url="/watchlist"
 						icon={<IoGridOutline />}
+						activeIcon={<IoGrid />}
 						name="Watchlist"
 					/>
 				</ul>

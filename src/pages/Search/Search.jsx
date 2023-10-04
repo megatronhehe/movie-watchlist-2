@@ -6,6 +6,8 @@ import {
 	IoCaretForward,
 } from "react-icons/io5";
 
+import { motion } from "framer-motion";
+
 import SearchedMoviesList from "./SearchedMoviesList";
 
 import SearchMoviesContext from "../../context/SearchMoviesContext";
@@ -20,7 +22,11 @@ const Search = () => {
 	} = useContext(SearchMoviesContext);
 
 	return (
-		<div className="flex flex-col gap-4 p-4 text-sm ">
+		<motion.div
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			className="flex flex-col gap-4 p-4 text-sm "
+		>
 			<section>
 				<div className="flex items-center justify-between sm:py-10">
 					<h2 className="flex flex-col items-center justify-center w-full gap-2 pl-4 text-xl border-red-400">
@@ -63,7 +69,7 @@ const Search = () => {
 
 				<SearchedMoviesList />
 			</section>
-		</div>
+		</motion.div>
 	);
 };
 

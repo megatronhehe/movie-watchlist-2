@@ -7,9 +7,12 @@ import Home from "./pages/Home/Home";
 import Search from "./pages/Search/Search";
 import Watchlist from "./pages/Watchlist/Watchlist";
 
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 
 const App = () => {
+	const location = useLocation();
+
 	return (
 		<>
 			<NavbarMobile />
