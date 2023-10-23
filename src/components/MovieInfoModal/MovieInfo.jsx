@@ -6,7 +6,12 @@ import { format } from "date-fns";
 
 import WatchlistContext from "../../context/WatchlistContext";
 
-import { IoTime, IoStar, IoSquareOutline } from "react-icons/io5";
+import {
+	IoTime,
+	IoStar,
+	IoSquareOutline,
+	IoCheckmarkCircle,
+} from "react-icons/io5";
 import { BsBookmark, BsFillBookmarkCheckFill } from "react-icons/bs";
 
 const MovieInfo = ({ movie }) => {
@@ -36,6 +41,8 @@ const MovieInfo = ({ movie }) => {
 		fetchThisMovie(movie.id);
 	}, []);
 
+	const isReleased = thisMovie.status === "Released";
+
 	const isExistInWatchlist = watchlist.some(
 		(watchlistMovie) => watchlistMovie.id === movie.id
 	);
@@ -56,15 +63,23 @@ const MovieInfo = ({ movie }) => {
 
 	return (
 		<div className="relative flex flex-col gap-6 font-extralight">
-			<div className="flex flex-col items-center gap-2 pb-2 border-b border-gray-700">
+			<div className="flex flex-col items-center gap-2 pb-6 border-b border-gray-700">
 				<h1 className="w-2/3 text-xl font-normal text-center">
 					{thisMovie.title}
 				</h1>
-				<p className="text-xs">
+				<p className="flex gap-2 text-xs">
 					{isDateExist
 						? format(new Date(thisMovie.release_date), "yyyy")
 						: "date unknown"}{" "}
-					- <span>{thisMovie.status}</span>
+					-{" "}
+					<span
+						className={`flex items-center gap-1 ${
+							isReleased ? "font-bold text-green-400" : "text-white"
+						}`}
+					>
+						{thisMovie.status}
+						{isReleased && <IoCheckmarkCircle className="text-lg" />}
+					</span>
 				</p>
 			</div>
 
