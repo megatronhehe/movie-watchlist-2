@@ -41,7 +41,7 @@ const MovieCard = ({ movie }) => {
 					<p>{movieYear}</p>
 					<button
 						onClick={() => addWatchlist(movie)}
-						className="absolute text-3xl cursor-pointer top-2 left-2"
+						className="absolute text-3xl duration-200 cursor-pointer top-2 left-2 hover:scale-125"
 					>
 						{isExistInWatchlist ? (
 							<BsFillBookmarkCheckFill className="text-green-400" />
@@ -51,7 +51,7 @@ const MovieCard = ({ movie }) => {
 					</button>
 					<IoInformationCircleOutline
 						onClick={() => setToggleMovieInfoModal(true)}
-						className="absolute text-3xl cursor-pointer bottom-2 right-2"
+						className="absolute text-3xl duration-200 cursor-pointer bottom-2 right-2 hover:scale-125"
 					/>
 				</div>
 
