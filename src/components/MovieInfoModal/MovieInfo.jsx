@@ -49,6 +49,10 @@ const MovieInfo = ({ movie }) => {
 
 	const isDateExist = movie.release_date.length > 0;
 
+	const moviePoster = movie.poster_path
+		? `https://image.tmdb.org/t/p/original${movie.poster_path}`
+		: null;
+
 	if (isLoading) {
 		return (
 			<p className="flex justify-center text-4xl ">
@@ -64,23 +68,32 @@ const MovieInfo = ({ movie }) => {
 	return (
 		<div className="relative flex flex-col gap-6 font-extralight">
 			<div className="flex flex-col items-center gap-2 pb-6 border-b border-gray-700">
-				<h1 className="w-2/3 text-xl font-normal text-center">
-					{thisMovie.title}
-				</h1>
-				<p className="flex gap-2 text-xs">
-					{isDateExist
-						? format(new Date(thisMovie.release_date), "yyyy")
-						: "date unknown"}{" "}
-					-{" "}
-					<span
-						className={`flex items-center gap-1 ${
-							isReleased ? "font-bold text-green-400" : "text-white"
-						}`}
-					>
-						{thisMovie.status}
-						{isReleased && <IoCheckmarkCircle className="text-lg" />}
-					</span>
-				</p>
+				<div className="relative flex justify-center">
+					<img
+						src={moviePoster}
+						alt={`movie poster of ${thisMovie.title}`}
+						className="rounded-lg"
+					/>
+					<div className="absolute flex flex-col items-center p-4 bg-black -bottom-12 backdrop-filter bg-opacity-40 rounded-xl backdrop-blur-sm">
+						<h1 className="text-xl font-normal text-center">
+							{thisMovie.title}
+						</h1>
+						<p className="flex gap-2 text-xs">
+							{isDateExist
+								? format(new Date(thisMovie.release_date), "yyyy")
+								: "date unknown"}{" "}
+							-{" "}
+							<span
+								className={`flex items-center gap-1 ${
+									isReleased ? "font-bold text-green-400" : "text-white"
+								}`}
+							>
+								{thisMovie.status}
+								{isReleased && <IoCheckmarkCircle className="text-lg" />}
+							</span>
+						</p>
+					</div>
+				</div>
 			</div>
 
 			<ul className="flex gap-2 pb-2 overflow-auto text-xs">
@@ -132,9 +145,17 @@ const MovieInfo = ({ movie }) => {
 
 			<p className="text-sm text-justify">{thisMovie.overview}</p>
 
+			<a
+				href={thisMovie.homepage}
+				target="_blank"
+				className="py-1 text-center bg-blue-400 rounded-xl"
+			>
+				Movie home page
+			</a>
+
 			<button
 				onClick={() => addWatchlist(movie)}
-				className="absolute top-0 left-0 text-3xl cursor-pointer"
+				className="absolute flex items-center justify-center w-10 h-10 p-2 text-3xl bg-black rounded-full cursor-pointer left-2 top-2 bg-opacity-60"
 			>
 				{isExistInWatchlist ? (
 					<BsFillBookmarkCheckFill className="text-green-400" />
